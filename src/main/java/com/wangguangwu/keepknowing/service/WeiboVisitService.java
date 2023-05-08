@@ -8,11 +8,18 @@ import java.util.List;
 public interface WeiboVisitService {
 
     /**
-     * 根据姓名获取对应的 Uid
+     * 根据姓名获取对应的 uid
      *
      * @param name 姓名
      * @return List of Uid
      */
     List<Long> getUidGroup(String name);
+
+    /**
+     * 获取 uid 对应的 blog
+     *
+     * @param uid uid
+     */
+    void visitWeibo(Long uid);
 
 }

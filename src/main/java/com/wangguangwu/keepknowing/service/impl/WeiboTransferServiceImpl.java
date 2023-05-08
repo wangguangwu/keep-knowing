@@ -1,11 +1,11 @@
 package com.wangguangwu.keepknowing.service.impl;
 
 import cn.hutool.core.date.DateUtil;
-import com.wangguangwu.keepknowing.constant.CompanyConstant;
-import com.wangguangwu.keepknowing.constant.MediaConstant;
-import com.wangguangwu.keepknowing.constant.SymbolConstant;
+import com.wangguangwu.keepknowing.constant.Company;
+import com.wangguangwu.keepknowing.constant.Media;
+import com.wangguangwu.keepknowing.constant.Symbol;
 import com.wangguangwu.keepknowing.entity.UserInfo;
-import com.wangguangwu.keepknowing.entity.weibo.WeiboSearchResponse;
+import com.wangguangwu.keepknowing.entity.weibo.WeiboSearchResponseDTO;
 import com.wangguangwu.keepknowing.service.WeiboTransferService;
 import com.wangguangwu.keepknowing.util.DownloadUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 public class WeiboTransferServiceImpl implements WeiboTransferService {
 
     @Override
-    public List<UserInfo> transferUserInfo(List<WeiboSearchResponse.DataDTO.CardsDTO.CardGroupDTO.UserDTO> userGroup) {
+    public List<UserInfo> transferUserInfo(List<WeiboSearchResponseDTO.DataDTO.CardsDTO.CardGroupDTO.UserDTO> userGroup) {
         return Optional.ofNullable(userGroup)
                 .orElse(Collections.emptyList())
                 .stream()
@@ -34,13 +34,13 @@ public class WeiboTransferServiceImpl implements WeiboTransferService {
                         .userName(userDTO.getScreenName())
                         .userDescription(userDTO.getDescription())
                         .userGender((byte) ("m".equals(userDTO.getGender()) ? 0 : 1))
-                        .userHeadImageUrl(DownloadUtil.download(getImageLarge(userDTO.getAvatarHd()), CompanyConstant.WEIBO + File.separator + userDTO.getId() + File.separator + "avatar", String.valueOf(DateUtil.currentSeconds()), MediaConstant.JPG))
+                        .userHeadImageUrl(DownloadUtil.download(getImageLarge(userDTO.getAvatarHd()), Company.WEIBO + File.separator + userDTO.getId() + File.separator + "avatar", String.valueOf(DateUtil.currentSeconds()), Media.JPG))
                         .userVerifiedReason(userDTO.getVerifiedReason())
                         .userFollowingCount(String.valueOf(userDTO.getFollowCount()))
                         .userFollowersCount(userDTO.getFollowersCountStr())
                         .userIsVerified((byte) (Boolean.TRUE.equals(userDTO.getVerified()) ? 1 : 0))
                         .userVerifiedType(String.valueOf(userDTO.getVerifiedType()))
-                        .userCoverImageUrl(DownloadUtil.download(getImageLarge(userDTO.getCoverImagePhone()), CompanyConstant.WEIBO + File.separator + userDTO.getId() + File.separator + "cover", String.valueOf(DateUtil.currentSeconds()), MediaConstant.JPG))
+                        .userCoverImageUrl(DownloadUtil.download(getImageLarge(userDTO.getCoverImagePhone()), Company.WEIBO + File.separator + userDTO.getId() + File.separator + "cover", String.valueOf(DateUtil.currentSeconds()), Media.JPG))
                         .build()
                 ).collect(Collectors.toList());
     }
@@ -59,7 +59,7 @@ public class WeiboTransferServiceImpl implements WeiboTransferService {
         index1 += 4;
         String head = image.substring(0, index1);
         String end = image.substring(index1 + 1);
-        int index2 = end.indexOf(SymbolConstant.SLASH);
+        int index2 = end.indexOf(Symbol.SLASH);
         if (index2 == -1) {
             return image;
         }

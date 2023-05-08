@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuppressWarnings("all")
-public class WeiboSearchResponse {
+public class WeiboSearchResponseDTO {
 
     @JsonProperty("ok")
     private Integer ok;

@@ -47,7 +47,7 @@ public class WeiboController {
      */
     @GetMapping("/updatePeople")
     public void updatePeople(String name) {
-        weiboService.initPeople(name);
+
     }
 
     /**
@@ -57,7 +57,6 @@ public class WeiboController {
      */
     @GetMapping("/searchPeople")
     public void searchPeople(String name) {
-        weiboService.initPeople(name);
     }
 
 }

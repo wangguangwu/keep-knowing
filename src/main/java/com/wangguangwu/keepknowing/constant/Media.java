@@ -4,10 +4,7 @@ package com.wangguangwu.keepknowing.constant;
  * @author wangguangwu
  */
 @SuppressWarnings("unused")
-public final class MediaConstant {
-
-    private MediaConstant() {
-    }
+public final class Media {
 
     /**
      * jpg
@@ -24,4 +21,6 @@ public final class MediaConstant {
      */
     public static final String MOV = "mov";
 
+    private Media() {
+    }
 }

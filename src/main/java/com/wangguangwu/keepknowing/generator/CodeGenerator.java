@@ -44,7 +44,7 @@ public class CodeGenerator {
 
     private static void create() {
         // 创建的表名
-        String tableName = "user_info";
+        String tableName = "blog,blog_jpg,blog_live,blog_video";
 
         // 生成文件
         FastAutoGenerator.create(URL_PATH, USER_NAME, PASSWORD)

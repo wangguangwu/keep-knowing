@@ -31,7 +31,7 @@ public final class DownloadUtil {
 
         HttpURLConnection connection = null;
         try {
-            connection = HttpConnectionUtil.getConnection(fileUrl);
+            connection = HttpClientUtil.getConnection(fileUrl);
 
             if (connection == null) {
                 return "";

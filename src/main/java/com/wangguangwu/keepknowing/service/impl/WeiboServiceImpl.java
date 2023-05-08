@@ -25,8 +25,12 @@ public class WeiboServiceImpl implements WeiboService {
 
     @Override
     public void initPeople(String name) {
-
-
+        // 获取用户对应的 uid
+        List<Long> uidGroup = weiboVisitService.getUidGroup(name);
+        for (Long uid : uidGroup) {
+            // 访问用户 weibo 数据
+            weiboVisitService.visitWeibo(uid);
+        }
     }
 
     @Override
